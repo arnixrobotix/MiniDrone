@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build mini-drone for debug",
+            "detail": "Debug build",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/mini-drone"
+            },
+            "command": "cargo",
+            "args": [
+                "build",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build mini-drone",
+            "detail": "Release build",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/mini-drone"
+            },
+            "command": "cargo",
+            "args": [
+                "build",
+                "--release",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}
