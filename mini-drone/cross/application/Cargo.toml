@@ -1,0 +1,21 @@
+[package]
+authors = ["Arnaud HOTE"]
+name = "mini-drone"
+edition = "2024"
+version = "0.1.0"
+
+[[bin]]
+name = "mini-drone"
+bench = false
+doctest = false
+test = false
+
+[dependencies]
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
+defmt = { version = "1.0", features = ["encoding-rzcobs"] }
+defmt-brtt = { version = "0.1", default-features = false, features = ["rtt"] }
+panic-probe = { version = "1.0", features = ["print-defmt"] }
+rtic = { version = "2.2.0", features = [ "thumbv7-backend" ] }
+stm32f4xx-hal = { version = "0.23", features = [ "stm32f401" ] }
+# TODO add a monotonic if you use scheduling
+# rtic-monotonics = { version = "1.0.0", features = [ "cortex-m-systick" ]}
