@@ -10,6 +10,7 @@ fn main() -> Result<(), anyhow::Error> {
     let args = args.iter().map(|s| &**s).collect::<Vec<_>>();
 
     match &args[..] {
+        ["flash"] => flash(),
         ["test", "all"] => test_all(),
         ["test", "host"] => test_host(),
         ["test", "host-target"] => test_host_target(),
