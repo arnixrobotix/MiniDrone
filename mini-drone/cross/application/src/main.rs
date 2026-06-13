@@ -2,17 +2,17 @@
 #![no_std]
 // #![feature(type_alias_impl_trait)]
 
-use flight_controller_unit::{FCU}; // global logger + panicking-behavior + memory layout
-
 #[rtic::app(
     device = flight_controller_unit::pac,
     dispatchers = [TIM2]
 )]
 mod app {
+    use flight_controller_unit::{FCU};
+
     // Shared resources go here
     #[shared]
     struct Shared {
-        fcu: flight_controller_unit::FCU,
+        fcu: FCU,
     }
 
     // Local resources go here
@@ -33,7 +33,7 @@ mod app {
 
         (
             Shared {
-                fcu: flight_controller_unit::FCU::init(),
+                fcu: FCU::init(),
             },
             Local {
                 // Initialization of local resources go here
