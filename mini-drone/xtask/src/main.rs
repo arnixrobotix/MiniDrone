@@ -3,7 +3,7 @@
 
 use std::{env, path::PathBuf};
 
-use xshell::cmd;
+use xshell::{cmd, Shell};
 
 fn main() -> Result<(), anyhow::Error> {
     let args = env::args().skip(1).collect::<Vec<_>>();
@@ -16,7 +16,7 @@ fn main() -> Result<(), anyhow::Error> {
         ["test", "host-target"] => test_host_target(),
         ["test", "target"] => test_target(),
         _ => {
-            println!("USAGE cargo xtask test [all|host|host-target|target]");
+            println!("USAGE cargo xtask [flash|test [all|host|host-target|target]]");
             Ok(())
         }
     }
@@ -29,29 +29,33 @@ fn test_all() -> Result<(), anyhow::Error> {
 }
 
 fn test_host() -> Result<(), anyhow::Error> {
-    let _p = xshell::pushd(root_dir())?;
-    cmd!("cargo test --workspace --exclude host-target-tests").run()?;
+    let sh = Shell::new()?;
+    let _p = sh.push_dir(root_dir());
+    cmd!(sh, "cargo test --workspace --exclude host-target-tests").run()?;
     Ok(())
 }
 
 fn test_host_target() -> Result<(), anyhow::Error> {
     flash()?;
 
-    let _p = xshell::pushd(root_dir())?;
-    cmd!("cargo test -p host-target-tests").run()?;
+    let sh = Shell::new()?;
+    let _p = sh.push_dir(root_dir());
+    cmd!(sh, "cargo test -p host-target-tests").run()?;
 
     Ok(())
 }
 
 fn test_target() -> Result<(), anyhow::Error> {
-    let _p = xshell::pushd(root_dir().join("cross"))?;
-    cmd!("cargo test -p self-tests").run()?;
+    let sh = Shell::new()?;
+    let _p = sh.push_dir(root_dir().join("cross"));
+    cmd!(sh, "cargo test -p self-tests").run()?;
     Ok(())
 }
 
 fn flash() -> Result<(), anyhow::Error> {
-    let _p = xshell::pushd(root_dir().join("cross"))?;
-    cmd!("cargo flash --chip STM32F401CCUx --release").run()?;
+    let sh = Shell::new()?;
+    let _p = sh.push_dir(root_dir().join("cross"));
+    cmd!(sh, "cargo flash --chip STM32F401CCUx --release").run()?;
     Ok(())
 }
 
