@@ -1,6 +1,7 @@
 [workspace]
 members = [
   "application",
+  "flight-controller-unit",
 ]
 resolver = "3"
 

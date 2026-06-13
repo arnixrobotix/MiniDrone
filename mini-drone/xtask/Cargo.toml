@@ -1,0 +1,10 @@
+[package]
+authors = ["Jorge Aparicio <jorge.aparicio@ferrous-systems.com>", "Arnaud HOTE"]
+name = "xtask"
+publish = false
+edition = "2024"
+version = "0.1.0"
+
+[dependencies]
+anyhow = "1.0"
+xshell = "0.1"

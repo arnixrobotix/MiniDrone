@@ -6,7 +6,7 @@
             "detail": "Debug build",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/mini-drone"
+                "cwd": "${workspaceFolder}/mini-drone/cross"
             },
             "command": "cargo",
             "args": [
@@ -22,7 +22,7 @@
             "detail": "Release build",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/mini-drone"
+                "cwd": "${workspaceFolder}/mini-drone/cross"
             },
             "command": "cargo",
             "args": [

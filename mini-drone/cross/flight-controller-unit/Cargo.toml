@@ -1,0 +1,17 @@
+[package]
+authors = ["Arnaud HOTE"]
+name = "flight-controller-unit"
+edition = "2024"
+version = "0.1.0"
+
+[lib]
+bench = false
+doctest = false
+test = false
+
+[dependencies]
+stm32f4xx-hal = { version = "0.23", features = [ "stm32f401" ] }
+panic-probe = { version = "1.0", features = ["print-defmt"] }
+defmt = { version = "1.0", features = ["encoding-rzcobs"] }
+defmt-brtt = { version = "0.1", default-features = false, features = ["rtt"] }
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }

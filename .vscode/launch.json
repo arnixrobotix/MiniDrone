@@ -12,7 +12,7 @@
       "chip": "STM32F401CCUx",
       "coreConfigs": [
         {
-          "programBinary": "mini-drone/target/thumbv7em-none-eabihf/debug/minimal",
+          "programBinary": "mini-drone/cross/target/thumbv7em-none-eabihf/debug/mini-drone",
           "rttEnabled": true
         }
       ]

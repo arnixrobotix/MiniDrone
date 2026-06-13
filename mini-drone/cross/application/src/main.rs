@@ -2,16 +2,17 @@
 #![no_std]
 // #![feature(type_alias_impl_trait)]
 
-use mini_drone as _; // global logger + panicking-behavior + memory layout
+use flight_controller_unit::{FCU}; // global logger + panicking-behavior + memory layout
 
 #[rtic::app(
-    device = stm32f4xx_hal::pac,
+    device = flight_controller_unit::pac,
     dispatchers = [TIM2]
 )]
 mod app {
     // Shared resources go here
     #[shared]
     struct Shared {
+        fcu: flight_controller_unit::FCU,
     }
 
     // Local resources go here
@@ -20,7 +21,7 @@ mod app {
     }
 
     #[init]
-    fn init(cx: init::Context) -> (Shared, Local) {
+    fn init(_cx: init::Context) -> (Shared, Local) {
         defmt::info!("init");
 
         // TODO setup monotonic if used
@@ -28,12 +29,11 @@ mod app {
         // let token = rtic_monotonics::create_systick_token!();
         // rtic_monotonics::systick::Systick::new(cx.core.SYST, sysclk, token);
 
-
         task1::spawn().ok();
 
         (
             Shared {
-                // Initialization of shared resources go here
+                fcu: flight_controller_unit::FCU::init(),
             },
             Local {
                 // Initialization of local resources go here
@@ -46,13 +46,15 @@ mod app {
     fn idle(_: idle::Context) -> ! {
         defmt::info!("idle");
 
+
         loop {
             continue;
         }
     }
 
-    #[task(priority = 1)]
-    async fn task1(_cx: task1::Context) {
+    #[task(shared = [&fcu], priority = 1)]
+    async fn task1(cx: task1::Context) {
+        let _fcu = cx.shared.fcu;
         defmt::info!("Hello from task1!");
     }
 }
