@@ -33,6 +33,47 @@
                 "kind": "build",
                 "isDefault": false
             }
+        },
+        {
+            "label": "Flash mini-drone",
+            "detail": "Flashing firmware on flight controller unit",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/mini-drone"
+            },
+            "command": "cargo",
+            "args": [
+                "xtask",
+                "flash",
+            ],
+        },
+        {
+            "label": "Test mini-drone on host",
+            "detail": "Testing firmware on host machine",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/mini-drone"
+            },
+            "command": "cargo",
+            "args": [
+                "xtask",
+                "test",
+                "host",
+            ],
+        },
+        {
+            "label": "Test mini-drone on target",
+            "detail": "Testing firmware on flight controller unit (self-tests)",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/mini-drone"
+            },
+            "command": "cargo",
+            "args": [
+                "xtask",
+                "test",
+                "target",
+            ],
         }
     ]
 }

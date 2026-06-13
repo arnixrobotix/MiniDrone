@@ -39,16 +39,26 @@ The project uses the following key dependencies:
 - STM32F401 microcontroller support
 - Optimized build profiles for embedded development
 
-## Building
+## Flashing
 
-To build the project, use the following command:
+To flash the firmware on the microcontroller, use the following command:
 ```bash
-cargo build
+cd mini-drone
+cargo xtask flash
 ```
 
-For optimized release builds:
+## Testing
+
+To test the firmware on the host, use the following command:
 ```bash
-cargo build --release
+cd mini-drone
+cargo xtask test host
+```
+
+To test the firmware on the mini-drone itself (self-tests), use the following command:
+```bash
+cd mini-drone
+cargo xtask test target
 ```
 
 ## Hardware
