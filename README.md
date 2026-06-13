@@ -6,20 +6,20 @@ This is a Rust-based embedded project for controlling a mini-drone, targeting an
 
 ```
 .
-├── .vscode/                    # VS Code configuration files
-├── documentation/              # Project documentation
-│   └── dff_200276_whitepaper_motorcalculation_fin.pdf
-├── mini-drone/                 # Main project directory
-│   ├── cross/                  # Cross-compilation workspace
-│   │   ├── application/        # Main application code
-│   │   │   └── src/
-│   │   │       ├── bin/
-│   │   │       │   └── mini-drone.rs  # Main binary
-│   │   │       └── lib.rs       # Library code
-│   │   └── Cargo.toml          # Workspace configuration
-│   ├── Cargo.toml              # Empty workspace config (references cross directory)
-│   ├── memory.x                # Memory layout for STM32F401
-│   └── rust-toolchain.toml     # Rust toolchain configuration
+├── .vscode/                        # VS Code configuration files
+├── documentation/                  # Project documentation
+├── luckfox/                        # Luckfox Pico Mini B flash images
+│   └── Pico_Mini_B_Flash_images/   # Flash image files for Luckfox hardware
+├── mini-drone/                     # Main project directory
+|   ├── crontroller/                # Controller code
+│   ├── cross/                      # Cross-compilation workspace
+│   │   ├── application/            # Main application code
+│   │   ├── flight-controller-unit/ # Flight controller unit code
+│   │   ├── Cargo.toml              # Target workspace configuration
+│   │   ├── memory.x                # Memory layout for STM32F401
+│   ├── xtask/                      # Custom build/tests Cargo extension
+│   |── Cargo.toml                  # Host workspace configuration
+│   └── rust-toolchain.toml         # Rust toolchain configuration
 ```
 
 ## Dependencies
