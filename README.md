@@ -10,16 +10,16 @@ This is a Rust-based embedded project for controlling a mini-drone, targeting an
 ├── documentation/                  # Project documentation
 ├── luckfox/                        # Luckfox Pico Mini B flash images
 │   └── Pico_Mini_B_Flash_images/   # Flash image files for Luckfox hardware
-├── mini-drone/                     # Main project directory
-|   ├── crontroller/                # Controller code
-│   ├── cross/                      # Cross-compilation workspace
-│   │   ├── application/            # Main application code
-│   │   ├── flight-controller-unit/ # Flight controller unit code
-│   │   ├── Cargo.toml              # Target workspace configuration
-│   │   ├── memory.x                # Memory layout for STM32F401
-│   ├── xtask/                      # Custom build/tests Cargo extension
-│   |── Cargo.toml                  # Host workspace configuration
-│   └── rust-toolchain.toml         # Rust toolchain configuration
+└── mini-drone/                     # Main project directory
+    ├── crontroller/                # Controller code
+    ├── cross/                      # Cross-compilation workspace
+    │   ├── application/            # Main application code
+    │   ├── flight-controller-unit/ # Flight controller unit code
+    │   ├── Cargo.toml              # Target workspace configuration
+    │   └── memory.x                # Memory layout for STM32F401
+    ├── xtask/                      # Custom build/tests Cargo extension
+    |── Cargo.toml                  # Host workspace configuration
+    └── rust-toolchain.toml         # Rust toolchain configuration
 ```
 
 ## Dependencies
@@ -38,6 +38,19 @@ The project uses the following key dependencies:
 - RTT (Real-Time Transfer) debugging support via defmt
 - STM32F401 microcontroller support
 - Optimized build profiles for embedded development
+
+## Setting up build environment
+
+To build the project the following target needs to be added to Cargo:
+```bash
+rustup target add thumbv7em-none-eabihf
+```
+
+In addition `Flip-Link` and `probe-rs` needs to be installed:
+```bash
+cargo install flip-link
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+```
 
 ## Flashing
 
