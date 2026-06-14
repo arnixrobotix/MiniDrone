@@ -39,7 +39,7 @@ The project uses the following key dependencies:
 - STM32F401 microcontroller support
 - Optimized build profiles for embedded development
 
-## Setting up build environment
+## Setting up build environment
 
 To build the project the following target needs to be added to Cargo:
 ```bash
